@@ -34,14 +34,15 @@ public class LivroController {
         ModelMapper modelMapper = new ModelMapper();
 
         try {
+            //mapeia os dados de livroRequest para um objeto livro
             Livro newLivro = modelMapper.map(livrorequest, Livro.class);
-            System.out.println(newLivro);
 
             livroRepository.save(newLivro);
             System.out.println(newLivro);
 
             Ano ano = anoRepository.findByAno(livrorequest.getAno());
 
+            //cria registro de Livro associado com o Ano
             LivroAno livroAno = new LivroAno();
             livroAno.setIdLivro(newLivro.getId());
             livroAno.setIdAno(ano.getId());
