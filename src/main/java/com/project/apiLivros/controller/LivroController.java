@@ -9,6 +9,7 @@ import com.project.apiLivros.repository.LivroRepository;
 import com.project.apiLivros.request.LivroRequest;
 import com.project.apiLivros.request.RemoveRequest;
 import com.project.apiLivros.request.UpdateLivroRequest;
+import com.project.apiLivros.response.SucessoResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -49,7 +50,8 @@ public class LivroController {
 
             livroAnoRepository.save(livroAno);
 
-            return new ResponseEntity<>("Livro cadastrado!", HttpStatus.CREATED);
+            SucessoResponse sucessoResponse = new SucessoResponse(200, "Livro cadastrado!");
+            return new ResponseEntity<>(sucessoResponse, HttpStatus.CREATED);
         }catch(Exception e){
             e.printStackTrace();
             StringWriter sw = new StringWriter();
@@ -76,7 +78,8 @@ public class LivroController {
             //deleta livro
             livroRepository.delete(livro);
 
-            return new ResponseEntity<>("Livro deletado com sucesso!", HttpStatus.OK);
+            SucessoResponse sucessoResponse = new SucessoResponse(200, "Livro deletado com sucesso!");
+            return new ResponseEntity<>(sucessoResponse, HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
             StringWriter sw = new StringWriter();
@@ -129,7 +132,9 @@ public class LivroController {
 
             //atualiza livro
             livroRepository.save(livro);
-            return new ResponseEntity<>("Livro atualizado com sucesso!", HttpStatus.OK);
+
+            SucessoResponse sucessoResponse = new SucessoResponse(200, "Livro atualizado com sucesso!");
+            return new ResponseEntity<>(sucessoResponse, HttpStatus.OK);
         }catch(Exception e){
             e.printStackTrace();
             StringWriter sw = new StringWriter();
